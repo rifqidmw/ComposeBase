@@ -103,8 +103,9 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
 
-    // Accompanist Navigation Material
+    // Accompanist Google Material
     implementation("com.google.accompanist:accompanist-navigation-material:0.36.0")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 
     // Splash Screen
     implementation("androidx.core:core-splashscreen:1.0.1")

@@ -1,50 +1,52 @@
-package com.aigs.base.presentation.onboarding
+package com.aigs.base.ui.screens.onboarding
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.aigs.base.R
+import com.aigs.base.common.AppConstants.Route
+import com.aigs.base.ui.components.BaseButton
+import com.aigs.base.ui.components.ButtonStyle
 import com.aigs.base.ui.theme.*
 import com.aigs.base.ui.theme.Raleway
 
 @Composable
-fun OnboardingScreen(navController: NavController, viewModel: OnboardingViewModel = viewModel()) {
-    val context = LocalContext.current
-    val toastMessage by viewModel.showToast.collectAsState()
+fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel) {
 
-    toastMessage?.let {
-        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        viewModel.onToastShown()
+    val navigationEvent by viewModel.navigationEvent.collectAsState()
+    LaunchedEffect(navigationEvent) {
+        when (navigationEvent) {
+            is NavigationEvent.NavigateToCreateAccount -> {
+                navController.navigate(Route.LOGIN)
+                viewModel.onNavigationEventHandled()
+            }
+
+            else -> {}
+        }
     }
 
     Box(
@@ -93,48 +95,45 @@ fun OnboardingScreen(navController: NavController, viewModel: OnboardingViewMode
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(
+            BaseButton(
                 onClick = { viewModel.onGetStartedClicked() },
-                modifier = Modifier
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue),
-                contentPadding = PaddingValues(vertical = 16.dp)
-            ) {
-                Text(
-                    text = "Let's get started",
-                    color = Color.White,
+                modifier = Modifier.fillMaxWidth(),
+                style = ButtonStyle.PRIMARY,
+                text = "Let's get started",
+                textStyle = TextStyle(
                     fontFamily = NunitoSans,
                     fontWeight = FontWeight.Light,
-                    fontSize = 20.sp,
-                )
-            }
+                    fontSize = 20.sp
+                ),
+                containerColor = PrimaryBlue,
+                contentColor = Color.White,
+                contentPadding = PaddingValues(vertical = 16.dp)
+            )
+
             Spacer(modifier = Modifier.height(18.dp))
 
-            Button(
+            BaseButton(
                 onClick = { viewModel.onGetStartedClicked() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-            ) {
-                Row(
-                    modifier = Modifier.wrapContentWidth(),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        text = "I already have an account",
-                        color = Color(0xFF202020),
-                        fontFamily = NunitoSans,
-                        fontWeight = FontWeight.Light,
-                        fontSize = 15.sp,
-                        lineHeight = 26.sp
-                    )
-                    Spacer(modifier = Modifier.size(16.dp))
+                style = ButtonStyle.TEXT,
+                text = "I already have an account",
+                textStyle = TextStyle(
+                    fontFamily = NunitoSans,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 15.sp,
+                    lineHeight = 26.sp,
+                    color = PrimaryBlack
+                ),
+                trailingIcon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_arrow_forward),
                         contentDescription = "Forward"
                     )
-                }
-            }
+                },
+                containerColor = Color.Transparent,
+                contentPadding = PaddingValues(horizontal = 8.dp),
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }

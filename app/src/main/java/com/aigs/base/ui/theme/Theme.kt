@@ -13,6 +13,7 @@ import com.aigs.base.R
 
 @Composable
 fun ComposeBaseTheme(
+    enableEdgeToEdge: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
@@ -28,6 +29,14 @@ fun ComposeBaseTheme(
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
                 context.theme.obtainStyledAttributes(intArrayOf(R.attr.lightStatusBar))
                     .getBoolean(0, false)
+        }
+
+        if (enableEdgeToEdge) {
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+            window.statusBarColor = android.graphics.Color.TRANSPARENT
+            window.navigationBarColor = android.graphics.Color.TRANSPARENT
+        } else {
+            WindowCompat.setDecorFitsSystemWindows(window, true)
         }
     }
 
