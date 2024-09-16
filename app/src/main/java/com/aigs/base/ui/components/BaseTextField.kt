@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -39,6 +40,7 @@ fun BaseTextField(
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     isPassword: Boolean = false,
+    isNumeric: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     modifier: Modifier = Modifier
 ) {
@@ -46,7 +48,14 @@ fun BaseTextField(
 
     BasicTextField(
         value = value,
-        onValueChange = onValueChange,
+        onValueChange = { newValue ->
+            if (isNumeric) {
+                val filteredValue = newValue.filter { it.isDigit() }
+                onValueChange(filteredValue)
+            } else {
+                onValueChange(newValue)
+            }
+        },
         keyboardOptions = keyboardOptions,
         singleLine = true,
         modifier = modifier
@@ -81,8 +90,8 @@ fun BaseTextField(
                     if (value.isEmpty()) {
                         Text(
                             text = label,
-                            color = Color.Gray,
-                            fontSize = 16.sp,
+                            color = Color(0xFFD2D2D2),
+                            fontSize = 14.sp,
                             fontFamily = NunitoSans
                         )
                     }
@@ -96,7 +105,8 @@ fun BaseTextField(
                                 else R.drawable.ic_visibility_off
                             ),
                             contentDescription = if (passwordVisible) "Hide password" else "Show password",
-                            tint = Color.Gray
+                            tint = PrimaryBlack,
+                            modifier = Modifier.size(20.dp)
                         )
                     }
                 } else if (trailingIcon != null) {
@@ -106,45 +116,3 @@ fun BaseTextField(
         }
     )
 }
-
-//@Composable
-//fun BaseTextField(
-//    value: String,
-//    onValueChange: (String) -> Unit,
-//    label: String,
-//    leadingIcon: @Composable (() -> Unit)? = null,
-//    isPassword: Boolean = false,
-//    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-//    modifier: Modifier
-//) {
-//    var passwordVisible by remember { mutableStateOf(false) }
-//
-//    OutlinedTextField(
-//        value = value,
-//        onValueChange = onValueChange,
-//        label = { Text(label) },
-//        leadingIcon = leadingIcon,
-//        trailingIcon = if (isPassword) {
-//            {
-//                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-//                    Icon(
-//                        painter = painterResource(
-//                            id = if (passwordVisible)
-//                                R.drawable.ic_visibility
-//                            else
-//                                R.drawable.ic_visibility_off
-//                        ),
-//                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
-//                    )
-//                }
-//            }
-//        } else null,
-//        visualTransformation = if (isPassword && !passwordVisible)
-//            PasswordVisualTransformation()
-//        else
-//            VisualTransformation.None,
-//        keyboardOptions = keyboardOptions,
-//        singleLine = true,
-//        modifier = modifier
-//    )
-//}

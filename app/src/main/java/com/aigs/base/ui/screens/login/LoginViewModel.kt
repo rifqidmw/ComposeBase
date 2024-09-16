@@ -10,8 +10,8 @@ class LoginViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(LoginState())
     val uiState: StateFlow<LoginState> = _uiState.asStateFlow()
 
-    private val _navigationEvent = MutableStateFlow<NavigationEvent?>(null)
-    val navigationEvent: StateFlow<NavigationEvent?> = _navigationEvent.asStateFlow()
+    private val _navigationEvent = MutableStateFlow<LoginNavigationEvent?>(null)
+    val navigationEvent: StateFlow<LoginNavigationEvent?> = _navigationEvent.asStateFlow()
 
     fun onEmailChange(email: String) {
         _uiState.update { it.copy(email = email) }
@@ -22,7 +22,7 @@ class LoginViewModel : ViewModel() {
         if (emailError != null) {
             _uiState.update { it.copy(emailError = emailError) }
         } else {
-            _navigationEvent.value = NavigationEvent.NavigateToHome
+            _navigationEvent.value = LoginNavigationEvent.NavigateToHome
         }
     }
 
@@ -33,16 +33,10 @@ class LoginViewModel : ViewModel() {
     private fun validateEmail(email: String): String? {
         return when {
             email.isBlank() -> "Email cannot be empty"
-            !isValidEmail(email) -> "Please enter a valid email address"
+            !android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+                .matches() -> "Please enter a valid email address"
+
             else -> null
         }
     }
-
-    private fun isValidEmail(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-}
-
-sealed class NavigationEvent {
-    object NavigateToHome : NavigationEvent()
 }

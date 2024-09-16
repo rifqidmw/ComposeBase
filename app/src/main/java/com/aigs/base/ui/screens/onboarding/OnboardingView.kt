@@ -40,7 +40,12 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
     val navigationEvent by viewModel.navigationEvent.collectAsState()
     LaunchedEffect(navigationEvent) {
         when (navigationEvent) {
-            is NavigationEvent.NavigateToCreateAccount -> {
+            is OnboardingNavigationEvent.NavigateToCreateAccount -> {
+                navController.navigate(Route.CREATE_ACCOUNT)
+                viewModel.onNavigationEventHandled()
+            }
+
+            is OnboardingNavigationEvent.NavigateToLogin -> {
                 navController.navigate(Route.LOGIN)
                 viewModel.onNavigationEventHandled()
             }
@@ -113,7 +118,7 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
             Spacer(modifier = Modifier.height(18.dp))
 
             BaseButton(
-                onClick = { viewModel.onGetStartedClicked() },
+                onClick = { viewModel.onLoginClicked() },
                 style = ButtonStyle.TEXT,
                 text = "I already have an account",
                 textStyle = TextStyle(

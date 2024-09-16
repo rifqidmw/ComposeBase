@@ -4,3 +4,7 @@ data class LoginState(
     val email: String = "",
     val emailError: String? = ""
 )
+
+sealed class LoginNavigationEvent {
+    object NavigateToHome : LoginNavigationEvent()
+}

@@ -58,7 +58,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
 
     LaunchedEffect(navigationEvent) {
         when (navigationEvent) {
-            is NavigationEvent.NavigateToHome -> {
+            is LoginNavigationEvent.NavigateToHome -> {
                 navController.navigate(Route.ONBOARDING)
                 viewModel.onNavigationEventHandled()
             }
@@ -91,7 +91,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(1f)
-                        .padding(horizontal = 16.dp),
+                        .padding(horizontal = 20.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
                     Spacer(modifier = Modifier.height(80.dp))
@@ -102,7 +102,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                         fontWeight = FontWeight.Bold,
                         fontSize = 52.sp,
                         letterSpacing = (-0.5).sp,
-                        color = Color.Black,
+                        color = PrimaryBlack,
                         textAlign = TextAlign.Start
                     )
 
@@ -126,10 +126,9 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    val emailError = uiState.emailError
-                    if (emailError != null) {
+                    if (uiState.emailError != null) {
                         Text(
-                            text = emailError,
+                            text = uiState.emailError!!,
                             fontFamily = NunitoSans,
                             fontWeight = FontWeight.Light,
                             fontSize = 12.sp,
@@ -138,7 +137,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(36.dp))
+                    Spacer(modifier = Modifier.weight(1f))
 
                     Column {
                         BaseButton(
@@ -171,8 +170,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                             contentPadding = PaddingValues(horizontal = 8.dp),
                             modifier = Modifier.align(Alignment.CenterHorizontally)
                         )
-
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(36.dp))
                     }
                 }
             }
