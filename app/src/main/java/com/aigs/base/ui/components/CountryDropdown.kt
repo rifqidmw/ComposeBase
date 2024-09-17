@@ -8,12 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -30,7 +28,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
@@ -49,7 +46,8 @@ fun CountryDropdown(
     countries: List<Country>,
     selectedCountry: Country?,
     onCountrySelected: (Country) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isLoading: Boolean = false
 ) {
     var expanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -96,33 +94,42 @@ fun CountryDropdown(
                 .background(Color.White),
             offset = DpOffset(x = 0.dp, y = 20.dp)
         ) {
-            countries.forEach { country ->
-                DropdownMenuItem(
-                    text = {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            FlagImage(
-                                flagUrl = country.flag,
-                                countryName = country.name,
-                                imageLoader = imageLoader
-                            )
-                            Text(
-                                text = "${country.name} (${country.iso2})",
-                                color = PrimaryBlack,
-                                fontSize = 14.sp,
-                                fontFamily = NunitoSans,
-                                fontWeight = FontWeight.Medium,
-                                lineHeight = 20.sp,
-                            )
+            if (isLoading) {
+                Box(
+                    modifier = Modifier.size(200.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                countries.forEach { country ->
+                    DropdownMenuItem(
+                        text = {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                FlagImage(
+                                    flagUrl = country.flag,
+                                    countryName = country.name,
+                                    imageLoader = imageLoader
+                                )
+                                Text(
+                                    text = "${country.name} (${country.iso2})",
+                                    color = PrimaryBlack,
+                                    fontSize = 14.sp,
+                                    fontFamily = NunitoSans,
+                                    fontWeight = FontWeight.Medium,
+                                    lineHeight = 20.sp,
+                                )
+                            }
+                        },
+                        onClick = {
+                            onCountrySelected(country)
+                            expanded = false
                         }
-                    },
-                    onClick = {
-                        onCountrySelected(country)
-                        expanded = false
-                    }
-                )
+                    )
+                }
             }
         }
     }

@@ -31,7 +31,9 @@ import com.aigs.base.R
 import com.aigs.base.common.AppConstants.Route
 import com.aigs.base.ui.components.BaseButton
 import com.aigs.base.ui.components.ButtonStyle
-import com.aigs.base.ui.theme.*
+import com.aigs.base.ui.theme.NunitoSans
+import com.aigs.base.ui.theme.PrimaryBlack
+import com.aigs.base.ui.theme.PrimaryBlue
 import com.aigs.base.ui.theme.Raleway
 
 @Composable

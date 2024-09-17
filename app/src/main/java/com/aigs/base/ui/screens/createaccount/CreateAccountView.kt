@@ -84,7 +84,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                 horizontalAlignment = Alignment.Start
             ) {
                 Spacer(modifier = Modifier.height(80.dp))
-                
+
                 Text(
                     text = "Create\nAccount",
                     fontFamily = Raleway,
@@ -95,7 +95,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                     textAlign = TextAlign.Start,
                     modifier = Modifier.padding(start = 10.dp)
                 )
-                
+
                 Spacer(modifier = Modifier.height(64.dp))
 
                 Box(
@@ -112,7 +112,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                     )
                     // Add click listener to open image picker
                 }
-                
+
                 Spacer(modifier = Modifier.height(32.dp))
 
                 BaseTextField(
@@ -165,7 +165,8 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                         CountryDropdown(
                             countries = uiState.countries,
                             selectedCountry = uiState.selectedCountry,
-                            onCountrySelected = viewModel::onCountrySelected
+                            onCountrySelected = { viewModel.onCountrySelected(it) },
+                            isLoading = uiState.isLoading
                         )
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),

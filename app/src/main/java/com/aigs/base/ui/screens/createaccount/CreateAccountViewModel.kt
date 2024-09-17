@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class CreateAccountViewModel(private val repository: CountryRepository) : ViewModel() {
     private val _uiState = MutableStateFlow(CreateAccountState())
@@ -26,10 +25,10 @@ class CreateAccountViewModel(private val repository: CountryRepository) : ViewMo
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             try {
-                val fetchedCountries = repository.getCountries()
+                val countries = repository.getCountries()
                 _uiState.update {
                     it.copy(
-                        countries = fetchedCountries,
+                        countries = countries,
                         isLoading = false,
                         error = null
                     )
