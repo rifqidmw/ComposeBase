@@ -9,6 +9,8 @@ import androidx.navigation.compose.rememberNavController
 import com.aigs.base.common.AppConstants.Route
 import com.aigs.base.ui.screens.createaccount.CreateAccountView
 import com.aigs.base.ui.screens.createaccount.CreateAccountViewModel
+import com.aigs.base.ui.screens.home.HomeView
+import com.aigs.base.ui.screens.home.HomeViewModel
 import com.aigs.base.ui.screens.login.LoginView
 import com.aigs.base.ui.screens.login.LoginViewModel
 import com.aigs.base.ui.screens.onboarding.OnboardingView
@@ -58,6 +60,10 @@ fun AppNavigation() {
         composable(Route.CREATE_ACCOUNT) {
             val viewModel: CreateAccountViewModel = getViewModel()
             CreateAccountView(navController, viewModel)
+        }
+        composable(Route.HOME) {
+            val viewModel: HomeViewModel = getViewModel()
+            HomeView(navController, viewModel)
         }
     }
 }

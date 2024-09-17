@@ -59,7 +59,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
     LaunchedEffect(navigationEvent) {
         when (navigationEvent) {
             is LoginNavigationEvent.NavigateToHome -> {
-                navController.navigate(Route.ONBOARDING)
+                navController.navigate(Route.HOME)
                 viewModel.onNavigationEventHandled()
             }
 
