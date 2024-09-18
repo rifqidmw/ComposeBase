@@ -3,6 +3,8 @@ package com.aigs.base.ui.navigations
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -15,15 +17,19 @@ import com.aigs.base.ui.screens.login.LoginView
 import com.aigs.base.ui.screens.login.LoginViewModel
 import com.aigs.base.ui.screens.onboarding.OnboardingView
 import com.aigs.base.ui.screens.onboarding.OnboardingViewModel
+import com.aigs.base.ui.screens.splash.SplashViewModel
 import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val splashViewModel: SplashViewModel = koinViewModel()
+    val initialRoute by splashViewModel.initialRoute.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
-        startDestination = Route.ONBOARDING,
+        startDestination = initialRoute ?: Route.ONBOARDING,
         enterTransition = {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Left,

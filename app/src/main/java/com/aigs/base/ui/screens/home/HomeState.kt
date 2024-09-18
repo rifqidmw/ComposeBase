@@ -8,3 +8,7 @@ data class HomeState(
     val isLoading: Boolean = false,
     val error: String? = null
 )
+
+sealed class HomeNavigationEvent {
+    object Logout: HomeNavigationEvent()
+}

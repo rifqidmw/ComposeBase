@@ -90,7 +90,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .weight(1f)
+                        .weight(1.5f)
                         .padding(horizontal = 20.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
@@ -119,16 +119,16 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                     Spacer(modifier = Modifier.height(18.dp))
 
                     BaseTextField(
-                        value = uiState.email,
-                        onValueChange = { viewModel.onEmailChange(it) },
-                        label = "Email",
+                        value = uiState.username,
+                        onValueChange = { viewModel.onUsernameChange(it) },
+                        label = "Username",
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    if (uiState.emailError != null) {
+                    if (uiState.usernameError != null) {
                         Text(
-                            text = uiState.emailError!!,
+                            text = uiState.usernameError!!,
                             fontFamily = NunitoSans,
                             fontWeight = FontWeight.Light,
                             fontSize = 12.sp,
@@ -136,6 +136,40 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                             modifier = Modifier.padding(top = 4.dp)
                         )
                     }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+                    
+                    BaseTextField(
+                        value = uiState.password,
+                        onValueChange = { viewModel.onPasswordChange(it) },
+                        isPassword = true,
+                        label = "Password",
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    if (uiState.passwordError != null) {
+                        Text(
+                            text = uiState.passwordError!!,
+                            fontFamily = NunitoSans,
+                            fontWeight = FontWeight.Light,
+                            fontSize = 12.sp,
+                            color = Color.Red,
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+                    }
+
+                    if (uiState.error != null) {
+                        Text(
+                            text = uiState.error!!,
+                            fontFamily = NunitoSans,
+                            fontWeight = FontWeight.Light,
+                            fontSize = 12.sp,
+                            color = Color.Red,
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+                    }
+
 
                     Spacer(modifier = Modifier.weight(1f))
 

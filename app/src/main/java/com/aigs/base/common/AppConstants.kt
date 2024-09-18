@@ -9,6 +9,7 @@ object AppConstants {
     }
 
     object Api {
+        const val BASE_URL = "https://dummyjson.com/"
         const val COUNTRIES_BASE_URL = "https://countriesnow.space/api/v0.1/"
         const val PRODUCTS_BASE_URL = "https://fakestoreapi.com/"
     }

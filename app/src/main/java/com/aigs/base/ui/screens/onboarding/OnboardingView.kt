@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -80,7 +81,7 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 Text(
-                    text = "Shoppe",
+                    text = stringResource(id = R.string.label_title_onboard),
                     fontFamily = Raleway,
                     fontWeight = FontWeight.Bold,
                     fontSize = 50.sp,
@@ -90,7 +91,7 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Beautiful eCommerce UI Kit\nfor your online store",
+                    text = stringResource(id = R.string.label_subtitle_onboard),
                     color = PrimaryBlack,
                     fontFamily = NunitoSans,
                     fontWeight = FontWeight.Light,
@@ -106,7 +107,7 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
                 onClick = { viewModel.onGetStartedClicked() },
                 modifier = Modifier.fillMaxWidth(),
                 style = ButtonStyle.PRIMARY,
-                text = "Let's get started",
+                text = stringResource(id = R.string.button_register),
                 textStyle = TextStyle(
                     fontFamily = NunitoSans,
                     fontWeight = FontWeight.Light,
@@ -122,7 +123,7 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
             BaseButton(
                 onClick = { viewModel.onLoginClicked() },
                 style = ButtonStyle.TEXT,
-                text = "I already have an account",
+                text = stringResource(id = R.string.button_login),
                 textStyle = TextStyle(
                     fontFamily = NunitoSans,
                     fontWeight = FontWeight.Light,

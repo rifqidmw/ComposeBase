@@ -116,11 +116,17 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     // Coil
-    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation("io.coil-kt:coil-compose:2.5.0")
     implementation("io.coil-kt:coil-svg:2.2.2")
 
     // Android SVG
     implementation("com.caverock:androidsvg-aar:1.4")
+
+    // Shared Preferences
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // Data Store
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     testImplementation("junit:junit:4.13.2")
 

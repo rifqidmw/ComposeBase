@@ -25,10 +25,10 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -44,16 +44,30 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.aigs.base.R
+import com.aigs.base.common.AppConstants.Route
 import com.aigs.base.data.model.ProductResponse
 import com.aigs.base.ui.components.BaseTextField
+import com.aigs.base.ui.components.SettingButton
 import com.aigs.base.ui.theme.PrimaryBlack
 import com.aigs.base.ui.theme.PrimaryBlue
 import com.aigs.base.ui.theme.Raleway
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeView(navController: NavController, viewModel: HomeViewModel) {
     val uiState by viewModel.uiState.collectAsState()
+    val navigationEvent by viewModel.navigationEvent.collectAsState()
+
+    LaunchedEffect(navigationEvent) {
+        when (navigationEvent) {
+            is HomeNavigationEvent.Logout -> {
+                navController.navigate(Route.ONBOARDING)
+                viewModel.onNavigationEventHandled()
+            }
+
+            else -> {}
+        }
+
+    }
 
     Column(
         modifier = Modifier
@@ -62,7 +76,8 @@ fun HomeView(navController: NavController, viewModel: HomeViewModel) {
     ) {
         AppBar(
             searchQuery = uiState.searchQuery,
-            onSearchQueryChange = { viewModel.onSearchQueryChange(it) }
+            onSearchQueryChange = { viewModel.onSearchQueryChange(it) },
+            onLogout = { viewModel.onLogoutClicked() },
         )
 
         when {
@@ -77,11 +92,12 @@ fun HomeView(navController: NavController, viewModel: HomeViewModel) {
 fun AppBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
+    onLogout: () -> Unit,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(start = 16.dp, end = 16.dp, top = 24.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
@@ -107,8 +123,12 @@ fun AppBar(
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             modifier = Modifier
-                .fillMaxWidth()
+                .weight(1f)
                 .height(40.dp)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        SettingButton(
+            onLogout = onLogout,
         )
     }
 }
