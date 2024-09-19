@@ -29,8 +29,8 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.aigs.base.ui.theme.PrimaryBlue
-import com.aigs.base.ui.theme.Typography
+import com.aigs.base.ui.theme.primaryBlue
+import com.aigs.base.ui.theme.typography
 
 enum class ButtonStyle {
     PRIMARY,
@@ -45,7 +45,7 @@ fun BaseButton(
     modifier: Modifier = Modifier,
     style: ButtonStyle = ButtonStyle.PRIMARY,
     text: String? = null,
-    textStyle: TextStyle = Typography.bodyLarge,
+    textStyle: TextStyle = typography.bodyLarge,
     icon: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
@@ -59,7 +59,7 @@ fun BaseButton(
     val buttonColors = ButtonDefaults.buttonColors(
         containerColor = when (style) {
             ButtonStyle.PRIMARY, ButtonStyle.ICON_ONLY -> containerColor.takeIf { it != Color.Unspecified }
-                ?: PrimaryBlue
+                ?: primaryBlue
 
             ButtonStyle.SECONDARY, ButtonStyle.TEXT -> Color.Transparent
         },
@@ -68,7 +68,7 @@ fun BaseButton(
                 ?: Color.White
 
             ButtonStyle.SECONDARY, ButtonStyle.TEXT -> contentColor.takeIf { it != Color.Unspecified }
-                ?: PrimaryBlue
+                ?: primaryBlue
         }
     )
 

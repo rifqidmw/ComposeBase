@@ -23,10 +23,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aigs.base.common.AppConstants.Language
-import com.aigs.base.ui.theme.DangerRed
-import com.aigs.base.ui.theme.NunitoSans
-import com.aigs.base.ui.theme.PrimaryBlack
-import com.aigs.base.ui.theme.PrimaryBlue
+import com.aigs.base.ui.theme.dangerRed
+import com.aigs.base.ui.theme.nunitoSans
+import com.aigs.base.ui.theme.primaryBlack
+import com.aigs.base.ui.theme.primaryBlue
 
 @Composable
 fun LanguageSelectionItem(
@@ -58,10 +58,10 @@ fun LanguageSelectionItem(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = language.name,
-                    fontFamily = NunitoSans,
+                    fontFamily = nunitoSans,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 16.sp,
-                    color = PrimaryBlack,
+                    color = primaryBlack,
                 )
             }
             Spacer(modifier = Modifier.width(16.dp))
@@ -69,8 +69,8 @@ fun LanguageSelectionItem(
                 selected = isSelected,
                 onClick = null,
                 colors = RadioButtonDefaults.colors(
-                    selectedColor = PrimaryBlue,
-                    unselectedColor = DangerRed
+                    selectedColor = primaryBlue,
+                    unselectedColor = dangerRed
                 )
             )
         }

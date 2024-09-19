@@ -2,7 +2,8 @@ package com.aigs.base.ui.screens.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aigs.base.data.domain.usecase.LogoutUseCase
+import com.aigs.base.common.AppConstants
+import com.aigs.base.domain.usecase.LogoutUseCase
 import com.aigs.base.data.repository.SettingsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -45,4 +46,13 @@ class SettingsViewModel(
     fun onNavigationEventHandled() {
         _navigationEvent.value = null
     }
+}
+
+data class SettingsState(
+    val selectedLanguage: String = "en",
+    val listLanguages: List<AppConstants.Language> = emptyList()
+)
+
+sealed class SettingsNavigationEvent {
+    object Logout: SettingsNavigationEvent()
 }

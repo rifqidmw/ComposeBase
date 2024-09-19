@@ -22,3 +22,8 @@ class OnboardingViewModel : ViewModel() {
         _navigationEvent.value = null
     }
 }
+
+sealed class OnboardingNavigationEvent {
+    object NavigateToCreateAccount : OnboardingNavigationEvent()
+    object NavigateToLogin : OnboardingNavigationEvent()
+}

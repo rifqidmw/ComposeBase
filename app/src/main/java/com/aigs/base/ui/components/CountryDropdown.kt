@@ -38,8 +38,8 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.aigs.base.R
 import com.aigs.base.data.model.Country
-import com.aigs.base.ui.theme.NunitoSans
-import com.aigs.base.ui.theme.PrimaryBlack
+import com.aigs.base.ui.theme.nunitoSans
+import com.aigs.base.ui.theme.primaryBlack
 
 @Composable
 fun CountryDropdown(
@@ -79,7 +79,7 @@ fun CountryDropdown(
             }
             Spacer(modifier = Modifier.width(16.dp))
             Divider(
-                color = PrimaryBlack,
+                color = primaryBlack,
                 modifier = Modifier
                     .height(24.dp)
                     .width(1.dp)
@@ -116,9 +116,9 @@ fun CountryDropdown(
                                 )
                                 Text(
                                     text = "${country.name} (${country.iso2})",
-                                    color = PrimaryBlack,
+                                    color = primaryBlack,
                                     fontSize = 14.sp,
-                                    fontFamily = NunitoSans,
+                                    fontFamily = nunitoSans,
                                     fontWeight = FontWeight.Medium,
                                     lineHeight = 20.sp,
                                 )

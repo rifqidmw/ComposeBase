@@ -128,6 +128,9 @@ dependencies {
     // Data Store
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
+    // HTTP Logging Interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

@@ -1,7 +1,7 @@
 package com.aigs.base.di
 
 import com.aigs.base.common.AppConstants.Api
-import com.aigs.base.data.domain.usecase.LogoutUseCase
+import com.aigs.base.domain.usecase.LogoutUseCase
 import com.aigs.base.data.local.LanguagePreferences
 import com.aigs.base.data.local.UserPreferences
 import com.aigs.base.data.remote.AuthService
@@ -17,6 +17,8 @@ import com.aigs.base.ui.screens.login.LoginViewModel
 import com.aigs.base.ui.screens.onboarding.OnboardingViewModel
 import com.aigs.base.ui.screens.settings.SettingsViewModel
 import com.aigs.base.ui.screens.splash.SplashViewModel
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -28,8 +30,21 @@ val appModule = module {
     single { LanguagePreferences(get()) }
 
     single {
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+    }
+
+    single {
+        OkHttpClient.Builder()
+            .addInterceptor(get<HttpLoggingInterceptor>())
+            .build()
+    }
+
+    single {
         Retrofit.Builder()
             .baseUrl(Api.COUNTRIES_BASE_URL)
+            .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CountriesService::class.java)
@@ -37,6 +52,7 @@ val appModule = module {
     single {
         Retrofit.Builder()
             .baseUrl(Api.PRODUCTS_BASE_URL)
+            .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ProductsService::class.java)
@@ -44,6 +60,7 @@ val appModule = module {
     single {
         Retrofit.Builder()
             .baseUrl(Api.BASE_URL)
+            .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AuthService::class.java)

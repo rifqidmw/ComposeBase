@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 import com.aigs.base.R
 
 
-val Raleway = FontFamily(
+val raleway = FontFamily(
     Font(R.font.raleway_light, FontWeight.Light),
     Font(R.font.raleway_regular, FontWeight.Normal),
     Font(R.font.raleway_medium, FontWeight.Medium),
@@ -17,7 +17,7 @@ val Raleway = FontFamily(
     Font(R.font.raleway_bold, FontWeight.Bold),
 )
 
-val NunitoSans = FontFamily(
+val nunitoSans = FontFamily(
     Font(R.font.nunito_sans_light, FontWeight.Light),
     Font(R.font.nunito_sans_regular, FontWeight.Normal),
     Font(R.font.nunito_sans_medium, FontWeight.Medium),
@@ -25,9 +25,9 @@ val NunitoSans = FontFamily(
     Font(R.font.nunito_sans_bold, FontWeight.Bold),
 )
 
-val Typography = Typography(
+val typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = NunitoSans,
+        fontFamily = nunitoSans,
         fontWeight = FontWeight.Light,
         fontSize = 20.sp
     )

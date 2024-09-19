@@ -2,6 +2,7 @@ package com.aigs.base.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -31,9 +33,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aigs.base.R
-import com.aigs.base.ui.theme.NunitoSans
-import com.aigs.base.ui.theme.PrimaryBlack
-import com.aigs.base.ui.theme.PrimaryGray
+import com.aigs.base.ui.theme.nunitoSans
+import com.aigs.base.ui.theme.primaryBlack
+import com.aigs.base.ui.theme.primaryGray
 
 @Composable
 fun BaseTextField(
@@ -45,7 +47,8 @@ fun BaseTextField(
     isPassword: Boolean = false,
     isNumeric: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    error: String? = null
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -63,14 +66,14 @@ fun BaseTextField(
         singleLine = true,
         modifier = modifier
             .background(
-                color = PrimaryGray,
+                color = primaryGray,
                 shape = RoundedCornerShape(60.dp)
             )
             .height(56.dp),
         textStyle = TextStyle(
-            color = PrimaryBlack,
+            color = primaryBlack,
             fontSize = 14.sp,
-            fontFamily = NunitoSans,
+            fontFamily = nunitoSans,
             fontWeight = FontWeight.Medium,
             lineHeight = 20.sp,
         ),
@@ -95,7 +98,7 @@ fun BaseTextField(
                             text = label,
                             color = Color(0xFFD2D2D2),
                             fontSize = 14.sp,
-                            fontFamily = NunitoSans
+                            fontFamily = nunitoSans
                         )
                     }
                     innerTextField()
@@ -108,7 +111,7 @@ fun BaseTextField(
                                 else R.drawable.ic_visibility_off
                             ),
                             contentDescription = if (passwordVisible) "Hide password" else "Show password",
-                            tint = PrimaryBlack,
+                            tint = primaryBlack,
                             modifier = Modifier.size(20.dp)
                         )
                     }
@@ -118,4 +121,14 @@ fun BaseTextField(
             }
         }
     )
+    if (error != null) {
+        Text(
+            text = error,
+            fontFamily = nunitoSans,
+            fontWeight = FontWeight.Light,
+            fontSize = 12.sp,
+            color = Color.Red,
+            modifier = Modifier.padding(top = 4.dp)
+        )
+    }
 }

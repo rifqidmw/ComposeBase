@@ -29,10 +29,10 @@ import com.aigs.base.common.AppConstants.Route
 import com.aigs.base.ui.components.BaseButton
 import com.aigs.base.ui.components.ButtonStyle
 import com.aigs.base.ui.components.LanguageSelectionItem
-import com.aigs.base.ui.theme.DangerRed
-import com.aigs.base.ui.theme.NunitoSans
-import com.aigs.base.ui.theme.PrimaryBlack
-import com.aigs.base.ui.theme.Raleway
+import com.aigs.base.ui.theme.dangerRed
+import com.aigs.base.ui.theme.nunitoSans
+import com.aigs.base.ui.theme.primaryBlack
+import com.aigs.base.ui.theme.raleway
 
 @Composable
 fun SettingsView(navController: NavController, viewModel: SettingsViewModel) {
@@ -58,19 +58,19 @@ fun SettingsView(navController: NavController, viewModel: SettingsViewModel) {
         Spacer(modifier = Modifier.height(30.dp))
         Text(
             text = stringResource(R.string.label_title_settings),
-            fontFamily = Raleway,
+            fontFamily = raleway,
             fontWeight = FontWeight.Bold,
             fontSize = 28.sp,
             lineHeight = 36.sp,
-            color = PrimaryBlack,
+            color = primaryBlack,
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
             text = stringResource(R.string.label_sub_language),
-            fontFamily = Raleway,
+            fontFamily = raleway,
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp,
-            color = PrimaryBlack,
+            color = primaryBlack,
         )
         Spacer(modifier = Modifier.height(8.dp))
         LazyColumn {
@@ -89,15 +89,15 @@ fun SettingsView(navController: NavController, viewModel: SettingsViewModel) {
             onClick = { viewModel.onLogoutClicked() },
             modifier = Modifier
                 .fillMaxWidth()
-                .background(shape = RoundedCornerShape(12.dp), color = DangerRed),
+                .background(shape = RoundedCornerShape(12.dp), color = dangerRed),
             style = ButtonStyle.PRIMARY,
             text = stringResource(id = R.string.button_logout),
             textStyle = TextStyle(
-                fontFamily = NunitoSans,
+                fontFamily = nunitoSans,
                 fontWeight = FontWeight.Light,
                 fontSize = 16.sp
             ),
-            containerColor = DangerRed,
+            containerColor = dangerRed,
             contentColor = Color.White,
             contentPadding = PaddingValues(vertical = 8.dp)
         )

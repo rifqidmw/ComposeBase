@@ -51,10 +51,10 @@ import com.aigs.base.R
 import com.aigs.base.common.AppConstants.Route
 import com.aigs.base.data.model.ProductResponse
 import com.aigs.base.ui.components.BaseTextField
-import com.aigs.base.ui.theme.PrimaryBlack
-import com.aigs.base.ui.theme.PrimaryBlue
-import com.aigs.base.ui.theme.PrimaryGray
-import com.aigs.base.ui.theme.Raleway
+import com.aigs.base.ui.theme.primaryBlack
+import com.aigs.base.ui.theme.primaryBlue
+import com.aigs.base.ui.theme.primaryGray
+import com.aigs.base.ui.theme.raleway
 
 @Composable
 fun HomeView(navController: NavController, viewModel: HomeViewModel) {
@@ -106,11 +106,11 @@ fun AppBar(
     ) {
         Text(
             text = "Shop",
-            fontFamily = Raleway,
+            fontFamily = raleway,
             fontWeight = FontWeight.Bold,
             fontSize = 28.sp,
             lineHeight = 36.sp,
-            color = PrimaryBlack,
+            color = primaryBlack,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
@@ -122,7 +122,7 @@ fun AppBar(
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = "Camera",
-                    tint = PrimaryBlue
+                    tint = primaryBlue
                 )
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -135,13 +135,13 @@ fun AppBar(
             onClick = onSettingsClicked,
             modifier = Modifier
                 .size(40.dp)
-                .background(color = PrimaryGray, shape = CircleShape)
+                .background(color = primaryGray, shape = CircleShape)
                 .clip(CircleShape)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_settings),
                 contentDescription = "Settings",
-                tint = PrimaryBlue
+                tint = primaryBlue
             )
         }
     }
@@ -192,22 +192,22 @@ fun ProductCard(product: ProductResponse) {
                 ) {
                     Text(
                         text = product.title,
-                        fontFamily = Raleway,
+                        fontFamily = raleway,
                         fontWeight = FontWeight.Normal,
                         fontSize = 12.sp,
                         lineHeight = 16.sp,
-                        color = PrimaryBlack,
+                        color = primaryBlack,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = "$${product.price}",
-                        fontFamily = Raleway,
+                        fontFamily = raleway,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
                         lineHeight = 22.sp,
-                        color = PrimaryBlack
+                        color = primaryBlack
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Box(
@@ -220,11 +220,11 @@ fun ProductCard(product: ProductResponse) {
                     ) {
                         Text(
                             text = product.category,
-                            fontFamily = Raleway,
+                            fontFamily = raleway,
                             fontWeight = FontWeight.Medium,
                             fontSize = 14.sp,
                             lineHeight = 18.sp,
-                            color = PrimaryBlack
+                            color = primaryBlack
                         )
                     }
                 }

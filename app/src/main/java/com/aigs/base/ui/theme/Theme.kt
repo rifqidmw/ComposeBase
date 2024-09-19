@@ -44,7 +44,7 @@ fun ComposeBaseTheme(
         colorScheme = MaterialTheme.colorScheme.copy(
             surface = color
         ),
-        typography = Typography,
+        typography = typography,
         content = content
     )
 }

@@ -36,10 +36,10 @@ import com.aigs.base.ui.components.BaseButton
 import com.aigs.base.ui.components.BaseTextField
 import com.aigs.base.ui.components.ButtonStyle
 import com.aigs.base.ui.theme.ComposeBaseTheme
-import com.aigs.base.ui.theme.NunitoSans
-import com.aigs.base.ui.theme.PrimaryBlack
-import com.aigs.base.ui.theme.PrimaryBlue
-import com.aigs.base.ui.theme.Raleway
+import com.aigs.base.ui.theme.nunitoSans
+import com.aigs.base.ui.theme.primaryBlack
+import com.aigs.base.ui.theme.primaryBlue
+import com.aigs.base.ui.theme.raleway
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
@@ -99,21 +99,21 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
 
                     Text(
                         text = stringResource(id = R.string.label_title_login),
-                        fontFamily = Raleway,
+                        fontFamily = raleway,
                         fontWeight = FontWeight.Bold,
                         fontSize = 52.sp,
                         letterSpacing = (-0.5).sp,
-                        color = PrimaryBlack,
+                        color = primaryBlack,
                         textAlign = TextAlign.Start
                     )
 
                     Text(
                         text = stringResource(id = R.string.label_subtitle_login),
-                        fontFamily = NunitoSans,
+                        fontFamily = nunitoSans,
                         fontWeight = FontWeight.Normal,
                         fontSize = 20.sp,
                         lineHeight = 35.sp,
-                        color = PrimaryBlack,
+                        color = primaryBlack,
                         modifier = Modifier.padding(top = 4.dp)
                     )
 
@@ -124,19 +124,9 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                         onValueChange = { viewModel.onUsernameChange(it) },
                         label = stringResource(id = R.string.hint_username),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        error = uiState.usernameError
                     )
-
-                    if (uiState.usernameError != null) {
-                        Text(
-                            text = uiState.usernameError!!,
-                            fontFamily = NunitoSans,
-                            fontWeight = FontWeight.Light,
-                            fontSize = 12.sp,
-                            color = Color.Red,
-                            modifier = Modifier.padding(top = 4.dp)
-                        )
-                    }
 
                     Spacer(modifier = Modifier.height(8.dp))
                     
@@ -146,31 +136,20 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                         isPassword = true,
                         label = stringResource(id = R.string.hint_password),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        error = uiState.passwordError
                     )
-
-                    if (uiState.passwordError != null) {
-                        Text(
-                            text = uiState.passwordError!!,
-                            fontFamily = NunitoSans,
-                            fontWeight = FontWeight.Light,
-                            fontSize = 12.sp,
-                            color = Color.Red,
-                            modifier = Modifier.padding(top = 4.dp)
-                        )
-                    }
 
                     if (uiState.error != null) {
                         Text(
                             text = uiState.error!!,
-                            fontFamily = NunitoSans,
+                            fontFamily = nunitoSans,
                             fontWeight = FontWeight.Light,
                             fontSize = 12.sp,
                             color = Color.Red,
                             modifier = Modifier.padding(top = 4.dp)
                         )
                     }
-
 
                     Spacer(modifier = Modifier.weight(1f))
 
@@ -181,11 +160,11 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                             style = ButtonStyle.PRIMARY,
                             text = stringResource(id = R.string.button_next),
                             textStyle = TextStyle(
-                                fontFamily = NunitoSans,
+                                fontFamily = nunitoSans,
                                 fontWeight = FontWeight.Light,
                                 fontSize = 20.sp
                             ),
-                            containerColor = PrimaryBlue,
+                            containerColor = primaryBlue,
                             contentColor = Color.White,
                             contentPadding = PaddingValues(vertical = 16.dp)
                         )
@@ -195,11 +174,11 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                             style = ButtonStyle.TEXT,
                             text = stringResource(id = R.string.button_cancel),
                             textStyle = TextStyle(
-                                fontFamily = NunitoSans,
+                                fontFamily = nunitoSans,
                                 fontWeight = FontWeight.Light,
                                 fontSize = 15.sp,
                                 lineHeight = 26.sp,
-                                color = PrimaryBlack
+                                color = primaryBlack
                             ),
                             containerColor = Color.Transparent,
                             contentPadding = PaddingValues(horizontal = 8.dp),

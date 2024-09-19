@@ -77,9 +77,9 @@ class LoginViewModel(private val repository: AuthRepository) : ViewModel() {
         return isValid
     }
 
-    private fun validateUsername(email: String): String? {
+    private fun validateUsername(username: String): String? {
         return when {
-            email.isBlank() -> "Email cannot be empty"
+            username.isBlank() -> "Username cannot be empty"
 
             else -> null
         }
@@ -93,4 +93,17 @@ class LoginViewModel(private val repository: AuthRepository) : ViewModel() {
             else -> null
         }
     }
+}
+
+data class LoginState(
+    val username: String = "",
+    val usernameError: String? = null,
+    val password: String = "",
+    val passwordError: String? = null,
+    val isLoading: Boolean = false,
+    val error: String? = null
+)
+
+sealed class LoginNavigationEvent {
+    object NavigateToHome : LoginNavigationEvent()
 }

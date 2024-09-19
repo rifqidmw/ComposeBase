@@ -71,3 +71,14 @@ class HomeViewModel(
         _navigationEvent.value = null
     }
 }
+
+data class HomeState(
+    val products: List<ProductResponse> = emptyList(),
+    val searchQuery: String = "",
+    val isLoading: Boolean = false,
+    val error: String? = null
+)
+
+sealed class HomeNavigationEvent {
+    object NavigateToSettings: HomeNavigationEvent()
+}

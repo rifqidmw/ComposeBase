@@ -32,10 +32,10 @@ import com.aigs.base.R
 import com.aigs.base.common.AppConstants.Route
 import com.aigs.base.ui.components.BaseButton
 import com.aigs.base.ui.components.ButtonStyle
-import com.aigs.base.ui.theme.NunitoSans
-import com.aigs.base.ui.theme.PrimaryBlack
-import com.aigs.base.ui.theme.PrimaryBlue
-import com.aigs.base.ui.theme.Raleway
+import com.aigs.base.ui.theme.nunitoSans
+import com.aigs.base.ui.theme.primaryBlack
+import com.aigs.base.ui.theme.primaryBlue
+import com.aigs.base.ui.theme.raleway
 
 @Composable
 fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel) {
@@ -82,18 +82,18 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
                 Spacer(modifier = Modifier.height(32.dp))
                 Text(
                     text = stringResource(id = R.string.label_title_onboard),
-                    fontFamily = Raleway,
+                    fontFamily = raleway,
                     fontWeight = FontWeight.Bold,
                     fontSize = 50.sp,
                     lineHeight = 54.sp,
                     letterSpacing = (-0.5).sp,
-                    color = PrimaryBlack
+                    color = primaryBlack
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(id = R.string.label_subtitle_onboard),
-                    color = PrimaryBlack,
-                    fontFamily = NunitoSans,
+                    color = primaryBlack,
+                    fontFamily = nunitoSans,
                     fontWeight = FontWeight.Light,
                     fontSize = 19.sp,
                     lineHeight = 30.sp,
@@ -109,11 +109,11 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
                 style = ButtonStyle.PRIMARY,
                 text = stringResource(id = R.string.button_register),
                 textStyle = TextStyle(
-                    fontFamily = NunitoSans,
+                    fontFamily = nunitoSans,
                     fontWeight = FontWeight.Light,
                     fontSize = 20.sp
                 ),
-                containerColor = PrimaryBlue,
+                containerColor = primaryBlue,
                 contentColor = Color.White,
                 contentPadding = PaddingValues(vertical = 16.dp)
             )
@@ -125,11 +125,11 @@ fun OnboardingView(navController: NavController, viewModel: OnboardingViewModel)
                 style = ButtonStyle.TEXT,
                 text = stringResource(id = R.string.button_login),
                 textStyle = TextStyle(
-                    fontFamily = NunitoSans,
+                    fontFamily = nunitoSans,
                     fontWeight = FontWeight.Light,
                     fontSize = 15.sp,
                     lineHeight = 26.sp,
-                    color = PrimaryBlack
+                    color = primaryBlack
                 ),
                 trailingIcon = {
                     Image(

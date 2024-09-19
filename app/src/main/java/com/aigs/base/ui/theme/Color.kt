@@ -2,7 +2,7 @@ package com.aigs.base.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val PrimaryBlue = Color(0xFF004CFF)
-val PrimaryBlack = Color(0xFF202020)
-val PrimaryGray = Color(0xFFF8F8F8)
-val DangerRed = Color(0xFFD97474)
+val primaryBlue = Color(0xFF004CFF)
+val primaryBlack = Color(0xFF202020)
+val primaryGray = Color(0xFFF8F8F8)
+val dangerRed = Color(0xFFD97474)
