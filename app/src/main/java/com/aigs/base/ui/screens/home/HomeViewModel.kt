@@ -2,8 +2,10 @@ package com.aigs.base.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aigs.base.data.model.Product
 import com.aigs.base.data.model.ProductResponse
 import com.aigs.base.data.repository.ProductRepository
+import com.aigs.base.utils.Utils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,7 +21,7 @@ class HomeViewModel(
     private val _navigationEvent = MutableStateFlow<HomeNavigationEvent?>(null)
     val navigationEvent: StateFlow<HomeNavigationEvent?> = _navigationEvent.asStateFlow()
 
-    private var products: List<ProductResponse> = emptyList()
+    private var products: List<Product> = emptyList()
 
     init {
         fetchProducts()
@@ -73,7 +75,7 @@ class HomeViewModel(
 }
 
 data class HomeState(
-    val products: List<ProductResponse> = emptyList(),
+    val products: List<Product> = emptyList(),
     val searchQuery: String = "",
     val isLoading: Boolean = false,
     val error: String? = null
