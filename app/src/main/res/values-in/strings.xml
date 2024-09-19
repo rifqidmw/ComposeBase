@@ -19,4 +19,12 @@
     <string name="label_title_login">Masuk</string>
     <string name="label_subtitle_login">Senang melihat Anda kembali! ♥</string>
     <string name="hint_username">Nama Pengguna</string>
+
+    <!-- Home Screen -->
+    <string name="hint_search">Cari</string>
+
+    <!-- Settings Screen -->
+    <string name="label_title_settings">Pengaturan</string>
+    <string name="label_sub_language">Bahasa</string>
+    <string name="button_logout">Logout</string>
 </resources>

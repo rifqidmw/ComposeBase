@@ -6,6 +6,7 @@ object AppConstants {
         const val LOGIN = "login"
         const val CREATE_ACCOUNT = "create_account"
         const val HOME = "home"
+        const val SETTINGS = "settings"
     }
 
     object Api {
@@ -13,4 +14,9 @@ object AppConstants {
         const val COUNTRIES_BASE_URL = "https://countriesnow.space/api/v0.1/"
         const val PRODUCTS_BASE_URL = "https://fakestoreapi.com/"
     }
+
+    data class Language(
+        val code: String,
+        val name: String
+    )
 }

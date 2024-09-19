@@ -17,6 +17,8 @@ import com.aigs.base.ui.screens.login.LoginView
 import com.aigs.base.ui.screens.login.LoginViewModel
 import com.aigs.base.ui.screens.onboarding.OnboardingView
 import com.aigs.base.ui.screens.onboarding.OnboardingViewModel
+import com.aigs.base.ui.screens.settings.SettingsView
+import com.aigs.base.ui.screens.settings.SettingsViewModel
 import com.aigs.base.ui.screens.splash.SplashViewModel
 import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -70,6 +72,10 @@ fun AppNavigation() {
         composable(Route.HOME) {
             val viewModel: HomeViewModel = getViewModel()
             HomeView(navController, viewModel)
+        }
+        composable(Route.SETTINGS) {
+            val viewModel: SettingsViewModel = getViewModel()
+            SettingsView(navController, viewModel)
         }
     }
 }

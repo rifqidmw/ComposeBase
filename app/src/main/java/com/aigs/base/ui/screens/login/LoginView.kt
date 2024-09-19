@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -97,7 +98,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                     Spacer(modifier = Modifier.height(80.dp))
 
                     Text(
-                        text = "Login",
+                        text = stringResource(id = R.string.label_title_login),
                         fontFamily = Raleway,
                         fontWeight = FontWeight.Bold,
                         fontSize = 52.sp,
@@ -107,7 +108,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                     )
 
                     Text(
-                        text = "Good to see you back! ♥",
+                        text = stringResource(id = R.string.label_subtitle_login),
                         fontFamily = NunitoSans,
                         fontWeight = FontWeight.Normal,
                         fontSize = 20.sp,
@@ -121,7 +122,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                     BaseTextField(
                         value = uiState.username,
                         onValueChange = { viewModel.onUsernameChange(it) },
-                        label = "Username",
+                        label = stringResource(id = R.string.hint_username),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -143,7 +144,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                         value = uiState.password,
                         onValueChange = { viewModel.onPasswordChange(it) },
                         isPassword = true,
-                        label = "Password",
+                        label = stringResource(id = R.string.hint_password),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -178,7 +179,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                             onClick = { viewModel.onNextClicked() },
                             modifier = Modifier.fillMaxWidth(),
                             style = ButtonStyle.PRIMARY,
-                            text = "Next",
+                            text = stringResource(id = R.string.button_next),
                             textStyle = TextStyle(
                                 fontFamily = NunitoSans,
                                 fontWeight = FontWeight.Light,
@@ -192,7 +193,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel) {
                         BaseButton(
                             onClick = { navController.popBackStack() },
                             style = ButtonStyle.TEXT,
-                            text = "Cancel",
+                            text = stringResource(id = R.string.button_cancel),
                             textStyle = TextStyle(
                                 fontFamily = NunitoSans,
                                 fontWeight = FontWeight.Light,

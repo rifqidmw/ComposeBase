@@ -2,6 +2,7 @@ package com.aigs.base.di
 
 import com.aigs.base.common.AppConstants.Api
 import com.aigs.base.data.domain.usecase.LogoutUseCase
+import com.aigs.base.data.local.LanguagePreferences
 import com.aigs.base.data.local.UserPreferences
 import com.aigs.base.data.remote.AuthService
 import com.aigs.base.data.remote.CountriesService
@@ -9,10 +10,12 @@ import com.aigs.base.data.remote.ProductsService
 import com.aigs.base.data.repository.AuthRepository
 import com.aigs.base.data.repository.CountryRepository
 import com.aigs.base.data.repository.ProductRepository
+import com.aigs.base.data.repository.SettingsRepository
 import com.aigs.base.ui.screens.createaccount.CreateAccountViewModel
 import com.aigs.base.ui.screens.home.HomeViewModel
 import com.aigs.base.ui.screens.login.LoginViewModel
 import com.aigs.base.ui.screens.onboarding.OnboardingViewModel
+import com.aigs.base.ui.screens.settings.SettingsViewModel
 import com.aigs.base.ui.screens.splash.SplashViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -22,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
     single { UserPreferences(androidContext()) }
+    single { LanguagePreferences(get()) }
 
     single {
         Retrofit.Builder()
@@ -48,6 +52,7 @@ val appModule = module {
     single { CountryRepository(get()) }
     single { ProductRepository(get()) }
     single { AuthRepository(get(), get()) }
+    single { SettingsRepository(get()) }
 
     factory { LogoutUseCase(get()) }
 
@@ -55,5 +60,6 @@ val appModule = module {
     viewModel { OnboardingViewModel() }
     viewModel { LoginViewModel(get()) }
     viewModel { CreateAccountViewModel(get()) }
-    viewModel { HomeViewModel(get(), get()) }
+    viewModel { HomeViewModel(get()) }
+    viewModel { SettingsViewModel(get(), get()) }
 }

@@ -21,4 +21,12 @@
     <string name="label_title_login">Login</string>
     <string name="label_subtitle_login">Good to see you back! ♥</string>
     <string name="hint_username">Username</string>
+
+    <!-- Home Screen -->
+    <string name="hint_search">Search</string>
+    
+    <!-- Settings Screen -->
+    <string name="label_title_settings">Settings</string>
+    <string name="label_sub_language">Language</string>
+    <string name="button_logout">Logout</string>
 </resources>

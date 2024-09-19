@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val repository: ProductRepository,
-    private val logoutUseCase: LogoutUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeState())
     val uiState: StateFlow<HomeState> = _uiState.asStateFlow()
@@ -65,9 +64,8 @@ class HomeViewModel(
         filterProducts(query)
     }
 
-    fun onLogoutClicked() {
-        logoutUseCase()
-        _navigationEvent.value = HomeNavigationEvent.Logout
+    fun onSettingsClicked() {
+        _navigationEvent.value = HomeNavigationEvent.NavigateToSettings
     }
 
     fun onNavigationEventHandled() {

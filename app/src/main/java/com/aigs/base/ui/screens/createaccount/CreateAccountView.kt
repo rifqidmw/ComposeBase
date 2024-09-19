@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -86,7 +87,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                 Spacer(modifier = Modifier.height(80.dp))
 
                 Text(
-                    text = "Create\nAccount",
+                    text = stringResource(id = R.string.label_title_register),
                     fontFamily = Raleway,
                     fontWeight = FontWeight.Bold,
                     fontSize = 52.sp,
@@ -118,7 +119,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                 BaseTextField(
                     value = uiState.email,
                     onValueChange = { viewModel.onEmailChange(it) },
-                    label = "Email",
+                    label = stringResource(id = R.string.hint_email),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -138,7 +139,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                 BaseTextField(
                     value = uiState.password,
                     onValueChange = { viewModel.onPasswordChange(it) },
-                    label = "Password",
+                    label = stringResource(id = R.string.hint_password),
                     isPassword = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                     modifier = Modifier.fillMaxWidth()
@@ -160,7 +161,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                     value = uiState.phoneNumber,
                     isNumeric = true,
                     onValueChange = { viewModel.onPhoneNumberChange(it) },
-                    label = "Your Number",
+                    label = stringResource(id = R.string.hint_phone_number),
                     leadingIcon = {
                         CountryDropdown(
                             countries = uiState.countries,
@@ -190,7 +191,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                         onClick = { viewModel.onDoneClick() },
                         modifier = Modifier.fillMaxWidth(),
                         style = ButtonStyle.PRIMARY,
-                        text = "Next",
+                        text = stringResource(id = R.string.button_next),
                         textStyle = TextStyle(
                             fontFamily = NunitoSans,
                             fontWeight = FontWeight.Light,
@@ -204,7 +205,7 @@ fun CreateAccountView(navController: NavController, viewModel: CreateAccountView
                     BaseButton(
                         onClick = { navController.popBackStack() },
                         style = ButtonStyle.TEXT,
-                        text = "Cancel",
+                        text = stringResource(id = R.string.button_cancel),
                         textStyle = TextStyle(
                             fontFamily = NunitoSans,
                             fontWeight = FontWeight.Light,

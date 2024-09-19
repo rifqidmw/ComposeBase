@@ -10,5 +10,5 @@ data class HomeState(
 )
 
 sealed class HomeNavigationEvent {
-    object Logout: HomeNavigationEvent()
+    object NavigateToSettings: HomeNavigationEvent()
 }

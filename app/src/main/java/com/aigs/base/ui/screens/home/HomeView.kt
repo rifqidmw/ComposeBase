@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -26,6 +27,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,9 +35,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
@@ -47,9 +51,9 @@ import com.aigs.base.R
 import com.aigs.base.common.AppConstants.Route
 import com.aigs.base.data.model.ProductResponse
 import com.aigs.base.ui.components.BaseTextField
-import com.aigs.base.ui.components.SettingButton
 import com.aigs.base.ui.theme.PrimaryBlack
 import com.aigs.base.ui.theme.PrimaryBlue
+import com.aigs.base.ui.theme.PrimaryGray
 import com.aigs.base.ui.theme.Raleway
 
 @Composable
@@ -59,8 +63,8 @@ fun HomeView(navController: NavController, viewModel: HomeViewModel) {
 
     LaunchedEffect(navigationEvent) {
         when (navigationEvent) {
-            is HomeNavigationEvent.Logout -> {
-                navController.navigate(Route.ONBOARDING)
+            is HomeNavigationEvent.NavigateToSettings -> {
+                navController.navigate(Route.SETTINGS)
                 viewModel.onNavigationEventHandled()
             }
 
@@ -77,7 +81,7 @@ fun HomeView(navController: NavController, viewModel: HomeViewModel) {
         AppBar(
             searchQuery = uiState.searchQuery,
             onSearchQueryChange = { viewModel.onSearchQueryChange(it) },
-            onLogout = { viewModel.onLogoutClicked() },
+            onSettingsClicked = { viewModel.onSettingsClicked() },
         )
 
         when {
@@ -92,7 +96,7 @@ fun HomeView(navController: NavController, viewModel: HomeViewModel) {
 fun AppBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
-    onLogout: () -> Unit,
+    onSettingsClicked: () -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -113,7 +117,7 @@ fun AppBar(
         BaseTextField(
             value = searchQuery,
             onValueChange = onSearchQueryChange,
-            label = "Search",
+            label = stringResource(id = R.string.hint_search),
             trailingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -127,9 +131,19 @@ fun AppBar(
                 .height(40.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
-        SettingButton(
-            onLogout = onLogout,
-        )
+        IconButton(
+            onClick = onSettingsClicked,
+            modifier = Modifier
+                .size(40.dp)
+                .background(color = PrimaryGray, shape = CircleShape)
+                .clip(CircleShape)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_settings),
+                contentDescription = "Settings",
+                tint = PrimaryBlue
+            )
+        }
     }
 }
 
