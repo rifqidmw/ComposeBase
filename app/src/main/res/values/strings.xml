@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Compose Base</string>
+    <string name="lang_english" translatable="false">English</string>
+    <string name="lang_indonesian" translatable="false">Indonesian</string>
+
+    <!-- Onboarding Screen -->
+    <string name="label_title_onboard">Shoppe</string>
+    <string name="label_subtitle_onboard">Beautiful eCommerce UI Kit for your online store</string>
+    <string name="button_register">Let\'s get started</string>
+    <string name="button_login">I already have an account</string>
+
+    <!-- Create Account Screen -->
+    <string name="label_title_register">Create\nAccount</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_phone_number">Your Number</string>
+    <string name="button_next">Next</string>
+    <string name="button_cancel">Cancel</string>
+
+    <!-- Login Screen -->
+    <string name="label_title_login">Login</string>
+    <string name="label_subtitle_login">Good to see you back! ♥</string>
+    <string name="hint_username">Username</string>
+
+    <!-- Home Screen -->
+    <string name="hint_search">Search</string>
+    
+    <!-- Settings Screen -->
+    <string name="label_title_settings">Settings</string>
+    <string name="label_sub_language">Language</string>
+    <string name="button_logout">Logout</string>
+</resources>

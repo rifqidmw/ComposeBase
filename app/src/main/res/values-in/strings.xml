@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Compose Base</string>
+
+    <!-- Onboarding Screen -->
+    <string name="label_title_onboard">Shoppe</string>
+    <string name="label_subtitle_onboard">UI Kit eCommerce yang Menarik untuk Toko Online Anda</string>
+    <string name="button_register">Mulai buat akun</string>
+    <string name="button_login">Saya sudah memiliki akun</string>
+
+    <!-- Create Account Screen -->
+    <string name="label_title_register">Buat\nAkun</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Kata Sandi</string>
+    <string name="hint_phone_number">Nomor Telepon Anda</string>
+    <string name="button_next">Selanjutnya</string>
+    <string name="button_cancel">Batal</string>
+
+    <!-- Login Screen -->
+    <string name="label_title_login">Masuk</string>
+    <string name="label_subtitle_login">Senang melihat Anda kembali! ♥</string>
+    <string name="hint_username">Nama Pengguna</string>
+
+    <!-- Home Screen -->
+    <string name="hint_search">Cari</string>
+
+    <!-- Settings Screen -->
+    <string name="label_title_settings">Pengaturan</string>
+    <string name="label_sub_language">Bahasa</string>
+    <string name="button_logout">Logout</string>
+</resources>
