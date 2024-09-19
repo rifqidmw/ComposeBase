@@ -2,7 +2,6 @@ package com.aigs.base.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aigs.base.data.domain.usecase.LogoutUseCase
 import com.aigs.base.data.model.ProductResponse
 import com.aigs.base.data.repository.ProductRepository
 import kotlinx.coroutines.flow.MutableStateFlow
