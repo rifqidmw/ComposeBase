@@ -49,6 +49,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.aigs.base.R
 import com.aigs.base.common.AppConstants.Route
+import com.aigs.base.data.model.Product
 import com.aigs.base.data.model.ProductResponse
 import com.aigs.base.ui.components.BaseTextField
 import com.aigs.base.ui.theme.primaryBlack
@@ -148,7 +149,7 @@ fun AppBar(
 }
 
 @Composable
-fun ProductList(products: List<ProductResponse>) {
+fun ProductList(products: List<Product>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp)
@@ -161,7 +162,7 @@ fun ProductList(products: List<ProductResponse>) {
 }
 
 @Composable
-fun ProductCard(product: ProductResponse) {
+fun ProductCard(product: Product) {
     Card(
         colors = CardDefaults.cardColors(Color.Transparent),
         modifier = Modifier
@@ -177,7 +178,7 @@ fun ProductCard(product: ProductResponse) {
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
                 AsyncImage(
-                    model = product.image,
+                    model = product.images.first(),
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop

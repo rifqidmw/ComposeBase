@@ -17,6 +17,7 @@ import com.aigs.base.ui.screens.login.LoginViewModel
 import com.aigs.base.ui.screens.onboarding.OnboardingViewModel
 import com.aigs.base.ui.screens.settings.SettingsViewModel
 import com.aigs.base.ui.screens.splash.SplashViewModel
+import com.aigs.base.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -26,6 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
+    val api =
     single { UserPreferences(androidContext()) }
     single { LanguagePreferences(get()) }
 
@@ -51,7 +53,7 @@ val appModule = module {
     }
     single {
         Retrofit.Builder()
-            .baseUrl(Api.PRODUCTS_BASE_URL)
+            .baseUrl(BuildConfig.API_KEY)
             .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -59,7 +61,7 @@ val appModule = module {
     }
     single {
         Retrofit.Builder()
-            .baseUrl(Api.BASE_URL)
+            .baseUrl(BuildConfig.API_KEY)
             .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

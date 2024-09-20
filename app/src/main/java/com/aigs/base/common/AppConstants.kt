@@ -10,9 +10,11 @@ object AppConstants {
     }
 
     object Api {
-        const val BASE_URL = "https://dummyjson.com/"
         const val COUNTRIES_BASE_URL = "https://countriesnow.space/api/v0.1/"
-        const val PRODUCTS_BASE_URL = "https://fakestoreapi.com/"
+
+        const val LOGIN = "auth/login"
+        const val FLAGS = "countries/flag/images"
+        const val PRODUCTS = "products"
     }
 
     data class Language(

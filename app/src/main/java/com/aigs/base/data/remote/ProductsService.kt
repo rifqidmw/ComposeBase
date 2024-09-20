@@ -1,9 +1,10 @@
 package com.aigs.base.data.remote
 
+import com.aigs.base.common.AppConstants
 import com.aigs.base.data.model.ProductResponse
 import retrofit2.http.GET
 
 interface ProductsService {
-    @GET("products")
-    suspend fun getProducts(): List<ProductResponse>
+    @GET(AppConstants.Api.PRODUCTS)
+    suspend fun getProducts(): ProductResponse
 }
