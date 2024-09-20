@@ -24,6 +24,9 @@
 
     <!-- Home Screen -->
     <string name="hint_search">Search</string>
+    <string name="label_greeting">Hello, %1$s!</string>
+    <string name="label_announcement">Announcement</string>
+    <string name="label_title_products">Products</string>
     
     <!-- Settings Screen -->
     <string name="label_title_settings">Settings</string>
