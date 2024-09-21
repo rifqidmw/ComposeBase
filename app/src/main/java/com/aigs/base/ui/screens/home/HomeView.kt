@@ -79,7 +79,7 @@ fun HomeView(navController: NavController, viewModel: HomeViewModel) {
         ) {
             item {
                 Spacer(modifier = Modifier.height(20.dp))
-                HomeGreetingsSection(name = "Emily")
+                HomeGreetingsSection(name = uiState.authName)
                 Spacer(modifier = Modifier.height(12.dp))
                 HomeAnnouncementSection()
                 Spacer(modifier = Modifier.height(20.dp))

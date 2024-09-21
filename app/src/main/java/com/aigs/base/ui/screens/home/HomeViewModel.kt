@@ -125,6 +125,7 @@ class HomeViewModel(
 }
 
 data class HomeState(
+    val authName: String = "Emily",
     val categories: List<CategoriesResponse> = emptyList(),
     val products: List<Product> = emptyList(),
     val searchQuery: String = "",

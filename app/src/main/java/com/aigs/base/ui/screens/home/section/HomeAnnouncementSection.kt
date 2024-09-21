@@ -47,7 +47,7 @@ fun HomeAnnouncementSection() {
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Maecenas hendrerit luctus libero ac vulputate.",
+                    text = stringResource(id = R.string.dummy_text),
                     fontFamily = nunitoSans,
                     fontWeight = FontWeight.Normal,
                     fontSize = 12.sp,
@@ -58,7 +58,7 @@ fun HomeAnnouncementSection() {
             Spacer(modifier = Modifier.weight(1f))
             Image(
                 painter = painterResource(id = R.drawable.ic_arrow_forward),
-                contentDescription = "Forward"
+                contentDescription = null
             )
         }
     }

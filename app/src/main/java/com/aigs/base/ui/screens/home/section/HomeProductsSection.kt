@@ -53,7 +53,7 @@ fun HomeProductsSection(
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         CategoryList(
-            categories = categories.take(4),
+            categories = categories.take(5),
             selectedCategory = selectedCategory,
             onCategorySelected = onCategorySelected
         )
@@ -78,7 +78,7 @@ fun HomeProductsSection(
             }
             products.isEmpty() -> {
                 Text(
-                    "No products available",
+                    stringResource(id = R.string.label_empty_product),
                     fontFamily = raleway,
                     fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
