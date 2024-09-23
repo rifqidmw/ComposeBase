@@ -35,8 +35,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.aigs.base.R
-import com.aigs.base.data.model.CategoriesResponse
-import com.aigs.base.data.model.Product
+import com.aigs.base.data.response.CategoriesResponse
+import com.aigs.base.data.response.Product
+import com.aigs.base.domain.model.CategoriesModel
+import com.aigs.base.domain.model.ProductModel
 import com.aigs.base.ui.theme.nunitoSans
 import com.aigs.base.ui.theme.primaryBlack
 import com.aigs.base.ui.theme.primaryBlue
@@ -44,12 +46,12 @@ import com.aigs.base.ui.theme.raleway
 
 @Composable
 fun HomeProductsSection(
-    categories: List<CategoriesResponse>,
+    categories: List<CategoriesModel>,
     selectedCategory: String,
     onCategorySelected: (String) -> Unit,
     isLoading: Boolean,
     error: String?,
-    products: List<Product>
+    products: List<ProductModel>
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         CategoryList(
@@ -96,7 +98,7 @@ fun HomeProductsSection(
 
 @Composable
 fun CategoryList(
-    categories: List<CategoriesResponse>,
+    categories: List<CategoriesModel>,
     selectedCategory: String,
     onCategorySelected: (String) -> Unit
 ) {
@@ -160,7 +162,7 @@ fun CategoryChip(
 }
 
 @Composable
-fun ProductGrid(products: List<Product>) {
+fun ProductGrid(products: List<ProductModel>) {
     Column(modifier = Modifier.fillMaxWidth()) {
         products.chunked(2).forEach { productPair ->
             Row(
@@ -185,7 +187,7 @@ fun ProductGrid(products: List<Product>) {
 }
 
 @Composable
-fun ProductCard(product: Product, modifier: Modifier) {
+fun ProductCard(product: ProductModel, modifier: Modifier) {
     Box(
         modifier = modifier
     ) {

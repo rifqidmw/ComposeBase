@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aigs.base.R
 import com.aigs.base.common.AppConstants.Route
+import com.aigs.base.data.response.Product
 import com.aigs.base.ui.components.BaseTextField
 import com.aigs.base.ui.screens.home.section.HomeAnnouncementSection
 import com.aigs.base.ui.screens.home.section.HomeGreetingsSection

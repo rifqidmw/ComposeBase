@@ -1,8 +1,8 @@
 package com.aigs.base.data.remote
 
 import com.aigs.base.common.AppConstants
-import com.aigs.base.data.model.CategoriesResponse
-import com.aigs.base.data.model.ProductResponse
+import com.aigs.base.data.response.ProductResponse
+import com.aigs.base.data.response.CategoriesResponse
 import retrofit2.http.GET
 
 interface ProductsService {

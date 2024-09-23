@@ -2,17 +2,26 @@ package com.aigs.base.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aigs.base.data.model.CategoriesResponse
-import com.aigs.base.data.model.Product
-import com.aigs.base.data.repository.ProductRepository
+import com.aigs.base.data.response.Product
+import com.aigs.base.data.response.CategoriesResponse
+import com.aigs.base.data.repository.ProductRepositoryImpl
+import com.aigs.base.data.request.LoginRequest
+import com.aigs.base.domain.model.CategoriesModel
+import com.aigs.base.domain.model.ProductModel
+import com.aigs.base.domain.usecase.GetCategoriesUseCase
+import com.aigs.base.domain.usecase.GetProductUseCase
+import com.aigs.base.ui.screens.login.LoginNavigationEvent
+import com.aigs.base.utils.Utils.appLog
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class HomeViewModel(
-    private val repository: ProductRepository,
+    private val getProductUseCase: GetProductUseCase,
+    private val getCategoriesUseCase: GetCategoriesUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeState())
     val uiState: StateFlow<HomeState> = _uiState.asStateFlow()
@@ -20,8 +29,6 @@ class HomeViewModel(
     private val _navigationEvent = MutableStateFlow<HomeNavigationEvent?>(null)
     val navigationEvent: StateFlow<HomeNavigationEvent?> = _navigationEvent.asStateFlow()
 
-    private var products: List<Product> = emptyList()
-    private var categories: List<CategoriesResponse> = emptyList()
 
     init {
         fetchCategories()
@@ -31,39 +38,61 @@ class HomeViewModel(
     private fun fetchCategories() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            try {
-                categories = repository.getCategories()
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        categories = categories,
-                    )
+            val result = getCategoriesUseCase.execute(Unit)
+            result.fold(
+                onSuccess = { data ->
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            categories = data,
+                        )
+                    }
+                },
+                onFailure = { e ->
+                    val errorMessage = when (e) {
+                        is HttpException -> {
+                            when (e.code()) {
+                                400 -> "Invalid credentials"
+                                500 -> "Internal server error"
+                                else -> "An unknown error occurred"
+                            }
+                        }
+                        else -> "An error occurred"
+                    }
+                    _uiState.update { it.copy(error = errorMessage) }
                 }
-            } catch (e: Exception) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = e.message ?: "An unknown error occurred"
-                    )
-                }
-            }
+            )
         }
     }
 
     private fun fetchProducts() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            try {
-                products = repository.getProducts()
-                filterProducts(_uiState.value.searchQuery)
-            } catch (e: Exception) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = e.message ?: "An unknown error occurred"
-                    )
+            val result = getProductUseCase.execute(Unit)
+            result.fold(
+                onSuccess = { data ->
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            products = data,
+                        )
+                    }
+                    filterProducts(_uiState.value.searchQuery)
+                },
+                onFailure = { e ->
+                    val errorMessage = when (e) {
+                        is HttpException -> {
+                            when (e.code()) {
+                                400 -> "Invalid credentials"
+                                500 -> "Internal server error"
+                                else -> "An unknown error occurred"
+                            }
+                        }
+                        else -> "An error occurred"
+                    }
+                    _uiState.update { it.copy(error = errorMessage) }
                 }
-            }
+            )
         }
     }
 
@@ -92,6 +121,7 @@ class HomeViewModel(
     }
 
     private fun filterProducts(query: String) {
+        val products = _uiState.value.products
         val data = if (query.isBlank()) {
             products
         } else {
@@ -108,6 +138,7 @@ class HomeViewModel(
     }
 
     private fun filterCategory(selectedCategory: String) {
+        val products = _uiState.value.products
         val data = if (selectedCategory.isBlank()) {
             products
         } else {
@@ -126,8 +157,8 @@ class HomeViewModel(
 
 data class HomeState(
     val authName: String = "Emily",
-    val categories: List<CategoriesResponse> = emptyList(),
-    val products: List<Product> = emptyList(),
+    val categories: List<CategoriesModel> = emptyList(),
+    val products: List<ProductModel> = emptyList(),
     val searchQuery: String = "",
     val selectedCategory: String = "",
     val isLoading: Boolean = false,

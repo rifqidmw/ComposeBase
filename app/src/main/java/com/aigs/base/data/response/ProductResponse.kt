@@ -1,4 +1,4 @@
-package com.aigs.base.data.model
+package com.aigs.base.data.response
 
 data class ProductResponse(
     val products: List<Product>
