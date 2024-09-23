@@ -2,15 +2,15 @@ package com.aigs.base.ui.screens.createaccount
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aigs.base.data.response.Country
-import com.aigs.base.data.repository.CountryRepositoryImpl
+import com.aigs.base.data.model.Country
+import com.aigs.base.data.repository.CountryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class CreateAccountViewModel(private val repository: CountryRepositoryImpl) : ViewModel() {
+class CreateAccountViewModel(private val repository: CountryRepository) : ViewModel() {
     private val _uiState = MutableStateFlow(CreateAccountState())
     val uiState: StateFlow<CreateAccountState> = _uiState.asStateFlow()
 

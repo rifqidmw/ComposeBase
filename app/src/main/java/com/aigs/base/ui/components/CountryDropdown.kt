@@ -37,7 +37,7 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.aigs.base.R
-import com.aigs.base.data.response.Country
+import com.aigs.base.data.model.Country
 import com.aigs.base.ui.theme.nunitoSans
 import com.aigs.base.ui.theme.primaryBlack
 

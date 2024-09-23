@@ -2,8 +2,7 @@ package com.aigs.base.ui.screens.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aigs.base.data.request.LoginRequest
-import com.aigs.base.domain.usecase.LoginUseCase
+import com.aigs.base.data.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,7 +10,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
+class LoginViewModel(private val repository: AuthRepository) : ViewModel() {
     private val _uiState = MutableStateFlow(LoginState())
     val uiState: StateFlow<LoginState> = _uiState.asStateFlow()
 
@@ -39,7 +38,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
     private fun login() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
-            val result = loginUseCase.execute(LoginRequest(username = _uiState.value.username, password = _uiState.value.password))
+            val result = repository.login(_uiState.value.username, _uiState.value.password)
             result.fold(
                 onSuccess = {
                     _navigationEvent.value = LoginNavigationEvent.NavigateToHome
