@@ -8,9 +8,9 @@ import com.aigs.base.data.remote.AuthService
 import com.aigs.base.data.remote.CountriesService
 import com.aigs.base.data.remote.ProductsService
 import com.aigs.base.data.repository.AuthRepositoryImpl
-import com.aigs.base.data.repository.CountryRepository
-import com.aigs.base.data.repository.ProductRepository
-import com.aigs.base.data.repository.SettingsRepository
+import com.aigs.base.data.repository.CountryRepositoryImpl
+import com.aigs.base.data.repository.ProductRepositoryImpl
+import com.aigs.base.data.repository.SettingsRepositoryImpl
 import com.aigs.base.ui.screens.createaccount.CreateAccountViewModel
 import com.aigs.base.ui.screens.home.HomeViewModel
 import com.aigs.base.ui.screens.login.LoginViewModel
@@ -18,7 +18,16 @@ import com.aigs.base.ui.screens.onboarding.OnboardingViewModel
 import com.aigs.base.ui.screens.settings.SettingsViewModel
 import com.aigs.base.ui.screens.splash.SplashViewModel
 import com.aigs.base.BuildConfig
+import com.aigs.base.domain.repository.AuthRepository
+import com.aigs.base.domain.repository.CountryRepository
+import com.aigs.base.domain.repository.ProductRepository
+import com.aigs.base.domain.repository.SettingsRepository
+import com.aigs.base.domain.usecase.GetCategoriesUseCase
+import com.aigs.base.domain.usecase.GetCurrentLanguageUseCase
+import com.aigs.base.domain.usecase.GetLanguageUseCase
+import com.aigs.base.domain.usecase.GetProductUseCase
 import com.aigs.base.domain.usecase.LoginUseCase
+import com.aigs.base.domain.usecase.SetLanguageUseCase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -54,7 +63,7 @@ val appModule = module {
     }
     single {
         Retrofit.Builder()
-            .baseUrl(BuildConfig.API_KEY)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -62,25 +71,30 @@ val appModule = module {
     }
     single {
         Retrofit.Builder()
-            .baseUrl(BuildConfig.API_KEY)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AuthService::class.java)
     }
 
-    single { CountryRepository(get()) }
-    single { ProductRepository(get()) }
-    single { AuthRepositoryImpl(get(), get()) }
-    single { SettingsRepository(get()) }
+    single<CountryRepository> { CountryRepositoryImpl(get()) }
+    single<ProductRepository> { ProductRepositoryImpl(get()) }
+    single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<SettingsRepository> { SettingsRepositoryImpl(get()) }
 
     factory { LogoutUseCase(get()) }
     factory { LoginUseCase(get()) }
+    factory { GetProductUseCase(get()) }
+    factory { GetCategoriesUseCase(get()) }
+    factory { GetCurrentLanguageUseCase(get()) }
+    factory { GetLanguageUseCase(get()) }
+    factory { SetLanguageUseCase(get()) }
 
     viewModel { SplashViewModel(get()) }
     viewModel { OnboardingViewModel() }
     viewModel { LoginViewModel(get()) }
     viewModel { CreateAccountViewModel(get()) }
-    viewModel { HomeViewModel(get()) }
-    viewModel { SettingsViewModel(get(), get()) }
+    viewModel { HomeViewModel(get(), get()) }
+    viewModel { SettingsViewModel(get(), get(), get(), get()) }
 }

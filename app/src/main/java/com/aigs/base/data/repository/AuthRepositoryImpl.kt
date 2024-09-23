@@ -14,7 +14,7 @@ class AuthRepositoryImpl(
     override suspend fun login(loginRequest: LoginRequest): Result<LoginModel> {
         return try {
             val res = api.login(loginRequest)
-            userPreferences.saveToken(res.token)
+            res.accessToken?.let { userPreferences.saveToken(it) }
             Result.success(res.toDomain())
         } catch (e: Exception) {
             Result.failure(e)
