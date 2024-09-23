@@ -15,6 +15,7 @@ object AppConstants {
         const val LOGIN = "auth/login"
         const val FLAGS = "countries/flag/images"
         const val PRODUCTS = "products"
+        const val PRODUCT_CATEGORIES = "products/categories"
     }
 
     data class Language(
