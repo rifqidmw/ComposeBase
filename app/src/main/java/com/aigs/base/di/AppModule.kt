@@ -7,7 +7,7 @@ import com.aigs.base.data.local.UserPreferences
 import com.aigs.base.data.remote.AuthService
 import com.aigs.base.data.remote.CountriesService
 import com.aigs.base.data.remote.ProductsService
-import com.aigs.base.data.repository.AuthRepository
+import com.aigs.base.data.repository.AuthRepositoryImpl
 import com.aigs.base.data.repository.CountryRepository
 import com.aigs.base.data.repository.ProductRepository
 import com.aigs.base.data.repository.SettingsRepository
@@ -18,6 +18,7 @@ import com.aigs.base.ui.screens.onboarding.OnboardingViewModel
 import com.aigs.base.ui.screens.settings.SettingsViewModel
 import com.aigs.base.ui.screens.splash.SplashViewModel
 import com.aigs.base.BuildConfig
+import com.aigs.base.domain.usecase.LoginUseCase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -70,10 +71,11 @@ val appModule = module {
 
     single { CountryRepository(get()) }
     single { ProductRepository(get()) }
-    single { AuthRepository(get(), get()) }
+    single { AuthRepositoryImpl(get(), get()) }
     single { SettingsRepository(get()) }
 
     factory { LogoutUseCase(get()) }
+    factory { LoginUseCase(get()) }
 
     viewModel { SplashViewModel(get()) }
     viewModel { OnboardingViewModel() }

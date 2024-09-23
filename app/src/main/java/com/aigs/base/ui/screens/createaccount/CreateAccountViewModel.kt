@@ -2,7 +2,7 @@ package com.aigs.base.ui.screens.createaccount
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aigs.base.data.model.Country
+import com.aigs.base.data.response.Country
 import com.aigs.base.data.repository.CountryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

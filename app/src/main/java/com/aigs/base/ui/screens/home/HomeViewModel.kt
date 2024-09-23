@@ -2,10 +2,8 @@ package com.aigs.base.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aigs.base.data.model.Product
-import com.aigs.base.data.model.ProductResponse
+import com.aigs.base.data.response.Product
 import com.aigs.base.data.repository.ProductRepository
-import com.aigs.base.utils.Utils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
