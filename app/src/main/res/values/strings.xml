@@ -2,6 +2,7 @@
     <string name="app_name">Compose Base</string>
     <string name="lang_english" translatable="false">English</string>
     <string name="lang_indonesian" translatable="false">Indonesian</string>
+    <string name="dummy_text" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit luctus libero ac vulputate.</string>
 
     <!-- Onboarding Screen -->
     <string name="label_title_onboard">Shoppe</string>
@@ -24,6 +25,10 @@
 
     <!-- Home Screen -->
     <string name="hint_search">Search</string>
+    <string name="label_greeting">Hello, %1$s!</string>
+    <string name="label_announcement">Announcement</string>
+    <string name="label_title_products">Products</string>
+    <string name="label_empty_product">No products available</string>
     
     <!-- Settings Screen -->
     <string name="label_title_settings">Settings</string>
