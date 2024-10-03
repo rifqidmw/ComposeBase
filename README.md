@@ -46,8 +46,8 @@ maven(url = "https://jitpack.io")
 
 ```gradle
 dependencies {
-	        implementation 'com.github.rifqidmw:ComposeBase:0.0.2'
-	}
+	implementation("com.github.rifqidmw:ComposeBase:0.0.2")
+}
 ```
 
 
