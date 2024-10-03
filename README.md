@@ -46,15 +46,10 @@ maven(url = "https://jitpack.io")
 
 ```gradle
 dependencies {
-	        implementation 'com.github.wlprojt:dimage:Tag'
+	        implementation 'com.github.rifqidmw:ComposeBase:0.0.2'
 	}
 ```
 
-### other ###
-
-```gradle
-implementation ("com.github.wlprojt:dimage:1.0")
-```
 
 ## Project Structure
 
