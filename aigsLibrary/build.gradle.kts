@@ -47,7 +47,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "com.github.rifqidmw"
-            artifactId = "aigslibrary"
+            artifactId = "aigsLibrary"
             version = "0.0.1"
 
             afterEvaluate {
